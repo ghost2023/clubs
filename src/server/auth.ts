@@ -20,6 +20,7 @@ declare module "next-auth" {
   interface Session extends DefaultSession {
     user: {
       id: string;
+      clubId: string | undefined;
       // ...other properties
       // role: UserRole;
     } & DefaultSession["user"];
@@ -38,13 +39,16 @@ declare module "next-auth" {
  */
 export const authOptions: NextAuthOptions = {
   callbacks: {
-    session: ({ session, user }) => ({
+    session: async ({ session, user }) => {
+      const club = await db.club.findFirst({where: {creator_id: user.id}})
+      return ({
       ...session,
       user: {
         ...session.user,
         id: user.id,
+          clubId: club?.id ?? undefined,
       },
-    }),
+    })},
   },
   adapter: PrismaAdapter(db) as Adapter,
   providers: [
