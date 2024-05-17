@@ -25,7 +25,7 @@ export default async function Component() {
     <MainLayout>
 
       <div className="flex gap-3 bg-gray-100 ">
-        <div className="flex flex-col py-8 gap-4 overflow-auto px-7">
+        <div className="flex flex-col py-8 gap-4 overflow-auto px-7 max-w-3xl w-full ">
           {fundraising.map(post => <FundCard fund={post}/> )}
           {posts.map(post => <PostCard post={post}/> )}
         </div>
@@ -76,9 +76,9 @@ const FundCard = async ({fund}:{fund: FundRaise & {club: Club}}) => {
             <div>
               <img
                 alt="Cafe Interior"
-                className="rounded-lg object-cover w-full "
+                className="rounded-lg object-cover w-full max-w-xl "
                 height={400}
-                src={`/uploads/${fund.images[0]}`}
+                src={`/uploads/${fund.images}`}
                 style={{
                   aspectRatio: "600/400",
                   objectFit: "cover",
@@ -115,7 +115,7 @@ const PostCard = ({post}:{post: Post & {club: Club}}) => {
             <div>
               <img
                 alt="Cafe Interior"
-                className="rounded-lg object-cover w-full "
+                className="rounded-lg object-cover w-full max-w-xl  "
                 height={400}
                 src={`/uploads/${post.images[0]}`}
                 style={{
