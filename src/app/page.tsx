@@ -76,7 +76,7 @@ const FundCard = async ({fund}:{fund: FundRaise & {club: Club}}) => {
             <div>
               <img
                 alt="Cafe Interior"
-                className="rounded-lg object-cover w-full max-w-xl "
+                className="rounded-lg object-cover w-full "
                 height={400}
                 src={`/uploads/${fund.images}`}
                 style={{
@@ -115,7 +115,7 @@ const PostCard = ({post}:{post: Post & {club: Club}}) => {
             <div>
               <img
                 alt="Cafe Interior"
-                className="rounded-lg object-cover w-full max-w-xl  "
+                className="rounded-lg object-cover w-full "
                 height={400}
                 src={`/uploads/${post.images[0]}`}
                 style={{
