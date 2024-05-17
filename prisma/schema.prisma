@@ -53,6 +53,10 @@ model User {
   participations ClubParticipant[]
   Club           Club[]
   Donations      Donation[]
+  Like           Like[]
+  Comment        Comment[]
+  Share          Share[]
+  CommentLike    CommentLike[]
 }
 
 model VerificationToken {
@@ -77,25 +81,17 @@ model Club {
   participats ClubParticipant[]
   Donations   Donation[]
   Events      Event[]
-}
-
-model Role {
-  id   Int    @id @default(autoincrement())
-  name String
-
-  display_name    String
-  ClubParticipant ClubParticipant[]
+  Post        Post[]
+  FundRaise   FundRaise[]
 }
 
 model ClubParticipant {
   user_id String
   club_id Int
 
-  club Club @relation(fields: [club_id], references: [id])
-  user User @relation(fields: [user_id], references: [id])
-
-  role_id Int
-  role    Role @relation(fields: [role_id], references: [id])
+  created_at DateTime @default(now())
+  club       Club     @relation(fields: [club_id], references: [id])
+  user       User     @relation(fields: [user_id], references: [id])
 
   @@id([user_id, club_id])
 }
@@ -113,6 +109,9 @@ model Donation {
 
   status DonationStatus @default(PENDING)
 
+  fund_raise_id Int?
+  fund_raise    FundRaise? @relation(fields: [fund_raise_id], references: [id])
+
   created_at DateTime @default(now())
 }
 
@@ -127,6 +126,8 @@ model Event {
 
   images   String[]
   location String
+  title   String
+  description String
 
   club_id Int
   club    Club @relation(fields: [club_id], references: [id])
@@ -137,11 +138,89 @@ model Event {
   created_at DateTime @default(now())
 }
 
+model FundRaise {
+  id          Int    @id @default(autoincrement())
+  title       String
+  images      String
+  description String
+
+  club_id Int
+  club    Club @relation(fields: [club_id], references: [id])
+
+  goal Float
+
+  created_at DateTime   @default(now())
+  Donation   Donation[]
+}
+
 model Post {
   id      Int      @id @default(autoincrement())
   title   String
   images  String[]
   Caption String
+  club_id Int
+  club    Club     @relation(fields: [club_id], references: [id])
+
+  created_at  DateTime      @default(now())
+  Like        Like[]
+  Comment     Comment[]
+  Share       Share[]
+  CommentLike CommentLike[]
+}
+
+model Share {
+  id      Int    @id @default(autoincrement())
+  user_id String
+  user    User   @relation(fields: [user_id], references: [id])
+
+  post_id Int
+  post    Post @relation(fields: [post_id], references: [id])
 
   created_at DateTime @default(now())
+}
+
+model Like {
+  id      Int    @id @default(autoincrement())
+  user_id String
+  user    User   @relation(fields: [user_id], references: [id])
+
+  post_id Int
+  post    Post @relation(fields: [post_id], references: [id])
+
+  created_at DateTime @default(now())
+
+  @@unique([user_id, post_id])
+}
+
+model Comment {
+  id      Int    @id @default(autoincrement())
+  content String
+
+  user_id String
+  user    User   @relation(fields: [user_id], references: [id])
+
+  post_id Int
+  post    Post @relation(fields: [post_id], references: [id])
+
+  created_at DateTime @default(now())
+}
+
+model CommentLike {
+  id      Int    @id @default(autoincrement())
+  user_id String
+  user    User   @relation(fields: [user_id], references: [id])
+
+  comment_id Int
+  post       Post @relation(fields: [comment_id], references: [id])
+
+  created_at DateTime @default(now())
+
+  @@unique([user_id, comment_id])
+}
+
+enum POST_TYPE {
+  REGULAR
+  POLL
+  EVENT
+  ANNOUNCEMENT
 }
