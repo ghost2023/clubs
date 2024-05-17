@@ -1,29 +1,26 @@
-# Create T3 App
+# Clubs Social: A Full-Stack Web App for Clubs
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+Clubs Social is a comprehensive web application designed to empower clubs and organizations to connect with their members and the broader community. It provides a user-friendly platform for clubs to:
 
-## What's next? How do I make an app with this?
+## Showcase Events & Activities:
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+Share upcoming events, meetings, workshops, or social gatherings with detailed descriptions, captivating visuals (images/videos), and RSVP functionality.
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+## Create Engaging Posts:
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Drizzle](https://orm.drizzle.team)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+Publish informative and engaging news, updates, announcements, or stories to keep members informed and spark conversation.
+Facilitate Donations: Enable secure and convenient donation options through an integrated payment gateway, allowing supporters to contribute financially to the club's goals.
 
-## Learn More
+## Build Community:
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+Foster a sense of belonging by providing a dedicated space for members to interact, share ideas, and collaborate on projects.
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+# Technical Stack:
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+## Frontend and Backend:
 
-## How do I deploy this?
+Built with a modern JavaScript framework Next.js for a dynamic and user-friendly experience. auth was implement with next-auth. api with trpc.
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+## Database:
+
+I use postgresql for database for it's reliablity. I also used Prisma for orm
