@@ -32,7 +32,7 @@ const MainLayout: FC<{ children: React.ReactNode; storeId?: string }> = ({
       {windowWidth > 768 && (
         <div className="max-w-[200px] w-full shrink-0"></div>
       )}
-      <Sidebar  />
+      <Sidebar windowWidth={windowWidth} isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
       <div className="flex-1 md:pr-2">
 
         {children}
