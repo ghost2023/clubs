@@ -20,7 +20,7 @@ declare module "next-auth" {
   interface Session extends DefaultSession {
     user: {
       id: string;
-      clubId: string | undefined;
+      clubId: number | undefined;
       // ...other properties
       // role: UserRole;
     } & DefaultSession["user"];
