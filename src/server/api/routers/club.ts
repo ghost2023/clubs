@@ -87,8 +87,8 @@ var raw = JSON.stringify({
       tx_ref: donation.id.toString(),
       email: ctx.session.user.email,
       // phone_number: '0943290482',
-  "callback_url": "https://webhook.site/077164d6-29cb-40df-ba29-8a00e59a7e60",
-  "return_url": "https://www.google.com/",
+  "callback_url": "https://www.google.com/api/chapa-webhook",
+  "return_url": "https://hackathon-clubs.vercel.app/",
 });
 
     console.log({raw});
