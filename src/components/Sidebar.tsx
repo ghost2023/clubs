@@ -1,6 +1,6 @@
 'use client'
 
-import { Grid, LogOut, UserIcon } from "lucide-react";
+import { Grid, LogOut } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { FC } from 'react';
@@ -82,18 +82,16 @@ const SmallSidebar: FC<{ close: () => void; storeId?: string }> = ({
             <HomeIcon className="w-4 h-4" />
             Home </Button>
       </Link>
-      <Link href="/explore">
-        <Button className="justify-start gap-2 w-full hover:bg-lime/40" size="sm" variant="ghost">
-            <CompassIcon className="w-4 h-4" />
-            Explore
-          </Button>
-      </Link>
-      <Link href="/me">
-        <Button className="justify-start gap-2 w-full hover:bg-lime/40" size="sm" variant="ghost">
-          <UserIcon className="w-4 h-4" />
-          Profile
-        </Button>
-      </Link>
+
+      {
+        !session?.user.clubId &&
+          <Link href="/register-club">
+            <Button className="justify-start gap-2 w-full hover:bg-lime/40" size="sm" variant="ghost">
+              <Grid className="w-4 h-4" />
+              Register for club
+            </Button>
+          </Link>
+      }
       {
         session?.user.clubId &&
           <Link href="/dashboard">
